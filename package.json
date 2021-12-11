@@ -1,0 +1,25 @@
+{
+  "name": "puc-costal-game-jam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mbruty/PUC-costal-game-jam.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mbruty/PUC-costal-game-jam/issues"
+  },
+  "homepage": "https://github.com/mbruty/PUC-costal-game-jam#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.15",
+    "socket-io": "^1.0.0"
+  }
+}
