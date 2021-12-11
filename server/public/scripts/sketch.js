@@ -55,3 +55,8 @@ function keyPressed() {
 function keyReleased() {
   state.setPlayerAction(null);
 }
+
+function mousePressed() {
+  var x = mouseX;
+  var y = mouseY;
+}

@@ -63,7 +63,7 @@ class UI {
 
       if (researchObjects[i]) {
         text(
-          `${i}       ${researchObjects[i].unlocked ? "🧪" : "🔒"}${
+          `${i + 1}       ${researchObjects[i].unlocked ? "🧪" : "🔒"}${
             researchObjects[i].unlocked
               ? researchObjects[i].price
               : researchObjects[i].unlocked
@@ -73,7 +73,7 @@ class UI {
         );
         image(researchObjects[i].image, i * 50, 0, 30, 30);
       } else {
-        text(`${i}`, i * 50 + 5, 40);
+        text(`${i + 1}`, i * 50 + 5, 40);
       }
     }
 
@@ -86,7 +86,7 @@ class UI {
     strokeWeight(1);
     if (researchObjects[state.selectedItem]) {
       text(
-        `${state.selectedItem}       ${
+        `${state.selectedItem + 1}       ${
           researchObjects[state.selectedItem].unlocked ? "🧪" : "🔒"
         }${
           researchObjects[state.selectedItem].unlocked
