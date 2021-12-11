@@ -1,6 +1,6 @@
 function BlurFunc(map) {
   var N, S, E, W;
-
+  var BlurFactor = 2;
   for (i = 0; i < map.length; i++) {
     for (j = 0; j < map[i].length; j++) {
       //if water
@@ -34,7 +34,7 @@ function BlurFunc(map) {
           sum = sum + 1;
         }
         //setBlur
-        if (sum > 2) {
+        if (sum > BlurFactor) {
           map[i][j] = 3;
         }
       }
