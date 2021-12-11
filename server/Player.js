@@ -7,6 +7,10 @@ class Player{
     username;
     id;
 
+    Messages = {
+        NO_CHANGE: "New position is same as old"
+    }
+
     constructor(id, username, startXPos=0, startYPos=0){
         this.id = id;
         this.username = username;
@@ -47,11 +51,12 @@ class Player{
         // If legal, return true
         // Else return a message
         
-        // TODO: implement this later
-
-        this.xPos = xPos;
-        this.yPos = yPos;
-        return true;
+        if (xPos === this.xPos && yPos === this.yPos) return this.Messages.NO_CHANGE;
+        else{
+            this.xPos = xPos;
+            this.yPos = yPos;
+            return true;
+        }
     }
 }
 

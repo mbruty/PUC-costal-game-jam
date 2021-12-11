@@ -45,9 +45,9 @@ io.on("connection", (socket) => {
   socket.on("update-position", (x, y) => {
     if (players[socket.id] !== undefined){
       let player = players[socket.id];
-      player.updatePosIfLegal(x, y);
-      console.log(`Update pos x: ${x}, y: ${y}`);
-      socket.broadcast.emit("player-move", player.getId(), player.getXPos(), player.getYPos());
+      if (player.updatePosIfLegal(x, y) === true){
+        socket.broadcast.emit("player-move", player.getId(), player.getXPos(), player.getYPos());
+      }
     }
   });
 
