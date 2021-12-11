@@ -1,7 +1,7 @@
 class GameState {
   constructor(energy, research) {
     this.UI = new UI(energy, research);
-    this.player = new Player(loadImage("images/player.png"), 500, 100);
+    this.player = new Player(loadImage("images/player.png"), 500, 200);
     this.gameObjects = [this.player, this.UI];
     this.energy = energy;
     this.research = research;
@@ -79,7 +79,7 @@ class GameState {
       yZero = Math.ceil(this.player.y - 5);
     }
 
-    const tile = this.map[xZero + offsetX][yZero + offsetY];
+    const tile = this.map[yZero + offsetY][xZero + offsetX];
     switch (tile.type) {
       case 0:
         image(
