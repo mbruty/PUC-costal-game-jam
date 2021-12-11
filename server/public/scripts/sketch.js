@@ -1,11 +1,7 @@
-let gameobjects = [];
-let ui;
-let gameState = {};
-let sketchWidth = 756;
+let sketchWidth = 640;
 let sketchHeight = 1024;
 
-let map = [];
-
+let state;
 let mapObj = {
   WATER: 0,
   LAND: 1,
@@ -13,10 +9,8 @@ let mapObj = {
 };
 
 function setup() {
-  // ToDo fetch map from server
-  ui = new UI(100, 255);
-  gameobjects.push(ui);
-  createCanvas(1024, 756);
+  state = new GameState(100, 255);
+  player = createCanvas(1024, 640);
   frameRate(60);
 
   map = MapGen(1, 1);
