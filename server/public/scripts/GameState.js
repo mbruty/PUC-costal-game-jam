@@ -7,6 +7,7 @@ class GameState {
     this.research = research;
     this.playerAction = null;
     this.map = null;
+    this.selectedItem = 0;
   }
 
   setMap(map) {
@@ -17,6 +18,12 @@ class GameState {
     if (key == null) {
       this.playerAction = null;
       return;
+    }
+
+    // If the input is a number
+    let num = parseInt(key);
+    if (!isNaN(num) && num > 0) {
+      this.selectedItem = num - 1;
     }
     switch (key.toLowerCase()) {
       case "w":
@@ -47,8 +54,6 @@ class GameState {
     if (!this.map) {
       return;
     }
-
-    console.log("Here");
 
     for (let y = 0; y < 11; y++) {
       push();

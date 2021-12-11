@@ -19,6 +19,7 @@ class UI {
   draw() {
     this.drawEnergy();
     this.drawResearch();
+    this.drawItems();
   }
 
   drawResearch() {
@@ -42,6 +43,34 @@ class UI {
     textSize(32);
     fill(0);
     text(`⚡️ Energy : ${this.power}`, 10, 40);
+    pop();
+  }
+
+  drawItems() {
+    push();
+    translate(300, sketchHeight - 50);
+    rect(0, 0, 450, 50);
+    for (let i = 0; i < 9; i++) {
+      fill(255);
+      if (state.selectedItem === i) {
+      } else {
+        stroke(0);
+        strokeWeight(1);
+      }
+      rect(i * 50, 0, 50, 50);
+      textSize(8);
+      fill(0);
+      text(i, i * 50 + 5, 40);
+    }
+
+    // Draw the selected item over everything else
+    stroke(64);
+    fill(255);
+    strokeWeight(4);
+    rect(state.selectedItem * 50, 0, 50, 50);
+    fill(0);
+    strokeWeight(1);
+    text(state.selectedItem, state.selectedItem * 50 + 5, 40);
     pop();
   }
 }
