@@ -21,15 +21,19 @@ class Player {
     switch (gameState.playerAction) {
       case 1: //w north,up
         this.applyForce(0, -1);
+        this.image = images.playerUp
         return;
       case 2: // d east,right
         this.applyForce(1, 0);
+        this.image = images.playerRight
         return;
       case 3: //s south,down
         this.applyForce(0, 1);
+        this.image = images.playerDown
         return;
       case 4: //a west,left
         this.applyForce(-1, 0);
+        this.image = images.playerLeft
         return;
     }
   }

@@ -5,5 +5,9 @@ function loadImages() {
   images.water = loadImage("images/waves.png");
   images.sand  = loadImage("images/sand.png");
   images.boat  = loadImage("images/boat.png");
+  images.playerUp = loadImage("images/player_back.png")
+  images.playerLeft = loadImage("images/player_left.png")
+  images.playerRight = loadImage("images/player_right.png")
+  images.playerDown = loadImage("images/player_front.png")
   Object.freeze(images);
 }
