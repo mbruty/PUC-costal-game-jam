@@ -25,6 +25,7 @@ const io = new Server({
 
 // All connected players
 let players = {};
+let highestPlayerId = 0;  // TODO: Update this from file when loading in players
 
 let map = new Map();
 map.generate();
@@ -33,7 +34,8 @@ io.on("connection", (socket) => {
   console.log("connection");
 
   socket.on("player-join", (username) => {
-    let newPlayer = new Player(username);
+    highestPlayerId += 1;
+    let newPlayer = new Player(highestPlayerId, username);
     players[socket.id] = newPlayer;
     sendState(socket);
     // Notify existing players of the new player

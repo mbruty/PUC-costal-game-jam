@@ -5,12 +5,43 @@ class Player{
     xPos;
     yPos;
     username;
+    id;
 
-    constructor(username, startXPos=0, startYPos=0){
+    constructor(id, username, startXPos=0, startYPos=0){
+        this.id = id;
         this.username = username;
         this.xPos = startXPos;
         this.yPos = startYPos;
     }
+
+    getId(){
+        return this.id;
+    }
+
+    getUsername(){
+        return this.getUsername;
+    }
+
+    setUsername(newUsername){
+        this.username = newUsername;
+    }
+    
+    getXPos(){
+        return this.xPos;
+    }
+
+    setXPos(newXPos){
+        this.xPos = newXPos;
+    }
+
+    getYPos(){
+        return this.yPos;
+    }
+
+    setYPos(newYPos){
+        this.yPos = newYPos;
+    }
+
 
     move(direction){
         // Move the player 1 tile in the given direction
