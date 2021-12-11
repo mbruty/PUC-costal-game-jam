@@ -18,7 +18,8 @@ const io = require('socket.io')(config.socketPort);
 // All connected players
 let players = {};
 
-let map = new Map();  // Placeholder for now
+let map = new Map();
+map.generate();
 
 io.on("connection", socket => {
 
