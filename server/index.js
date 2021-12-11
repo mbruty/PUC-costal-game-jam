@@ -16,7 +16,7 @@ const Map = require("./Map");
 const { Server } = require("socket.io");
 const io = new Server({
   cors: {
-    origin: "http://localhost:5500",
+    origin: "http://localhost:8000",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
@@ -42,7 +42,14 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("new-player", newPlayer);
   });
 
-  socket.on("player-move", (direction) => {});
+  socket.on("update-position", (x, y) => {
+    if (players[socket.id] !== undefined){
+      let player = players[socket.id];
+      player.updatePosIfLegal(x, y);
+      console.log(`Update pos x: ${x}, y: ${y}`);
+      socket.broadcast.emit("player-move", player.getId(), player.getXPos(), player.getYPos());
+    }
+  });
 
   socket.on("place", (itemId) => {});
 
