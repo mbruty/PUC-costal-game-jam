@@ -1,6 +1,6 @@
 let socket;
 function connect() {
-  socket = io("ws://costal-factorio.herokuapp.com/");
+  socket = io("https://costal-factorio.herokuapp.com/");
   socket.emit("player-join", "Mike");
   socket.on("connect", () => console.log("connect"));
 
