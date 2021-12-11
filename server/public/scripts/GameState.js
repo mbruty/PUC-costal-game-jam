@@ -52,9 +52,10 @@ class GameState {
     this.gameObjects.forEach((obj) => {
       obj.draw();
     });
-    for (let p in this.otherPlayers){
+    for (let p in this.otherPlayers) {
       this.otherPlayers[p].draw();
     }
+    this.UI.draw();
   }
 
   drawMap() {
@@ -126,7 +127,7 @@ class GameState {
     });
 
     // Update server with new data once every 60 frames
-    if (frameCount % 60 === 0) {
+    if (frameCount % 10 === 0) {
       sendState(this);
     }
 
@@ -136,7 +137,12 @@ class GameState {
     }
   }
 
-  addOtherPlayer(newPlayer){
-    this.otherPlayers[newPlayer.id] = new OtherPlayer(newPlayer.id, images.playerDown, 500, 500);
+  addOtherPlayer(newPlayer) {
+    this.otherPlayers[newPlayer.id] = new OtherPlayer(
+      newPlayer.id,
+      images.playerDown,
+      500,
+      500
+    );
   }
 }

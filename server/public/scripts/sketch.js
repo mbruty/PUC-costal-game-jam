@@ -7,12 +7,12 @@ const researchObjects = [
     unlocked: true,
     image: null,
   },
-  // wave: {
-  //   price: 100,
-  //   unlocked: false,
-  //   unlockPrice: 100,
-  //   image: null,
-  // },
+  {
+    price: 100,
+    unlocked: false,
+    unlockPrice: 200,
+    image: null,
+  },
 ];
 
 let state;
@@ -24,10 +24,11 @@ let mapObj = {
 
 function setup() {
   loadImages();
-  state = new GameState(0, 49);
+  state = new GameState(0, 500);
   state.gameObjects.push(new Windmill(501, 500)); // Always start the game with a windmill
   player = createCanvas(1088, 704);
   researchObjects[0].image = loadImage("images/windmill_1.png");
+  researchObjects[1].image = images.wave_gen_1;
   frameRate(60);
 
   connect();
@@ -83,8 +84,30 @@ function mousePressed() {
     switch (state.selectedItem) {
       case 0:
         state.gameObjects.push(new Windmill(newX, newY));
+
         state.research -= obj.price;
         break;
+
+      case 1:
+        if (
+          state.map[newY][newX].type !== 0 ||
+          state.map[newY - 1][newX].type !== 0
+        ) {
+          if (!obj.unlocked) {
+            obj.unlocked = true;
+            state.research -= Math.floor(obj.unlockPrice / 2);
+          }
+          return;
+        }
+        if (!obj.unlocked) {
+          if (state.research > obj.unlockPrice) {
+            obj.unlocked = true;
+            state.research -= obj.unlockPrice;
+          }
+        } else {
+          state.research -= obj.price;
+        }
+        state.gameObjects.push(new WaveGenerator(newX, newY));
     }
   }
 }
