@@ -1,3 +1,3 @@
 # PUC-costal-game-jam
 
-I DID A THING
+I DID A README.md THING
