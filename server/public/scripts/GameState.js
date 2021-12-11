@@ -1,12 +1,13 @@
 class GameState {
   constructor(energy, research) {
     this.UI = new UI(energy, research);
-    this.player = new Player(loadImage("images/player.png"), 500, 100);
+    this.player = new Player(loadImage("images/player.png"), 500, 200);
     this.gameObjects = [this.player, this.UI];
     this.energy = energy;
     this.research = research;
     this.playerAction = null;
     this.map = null;
+    this.selectedItem = 0;
   }
 
   setMap(map) {
@@ -17,6 +18,12 @@ class GameState {
     if (key == null) {
       this.playerAction = null;
       return;
+    }
+
+    // If the input is a number
+    let num = parseInt(key);
+    if (!isNaN(num) && num > 0) {
+      this.selectedItem = num - 1;
     }
     switch (key.toLowerCase()) {
       case "w":
@@ -48,8 +55,6 @@ class GameState {
       return;
     }
 
-    console.log("Here");
-
     for (let y = 0; y < 11; y++) {
       push();
       translate(0, y * 64);
@@ -74,7 +79,7 @@ class GameState {
       yZero = Math.ceil(this.player.y - 5);
     }
 
-    const tile = this.map[xZero + offsetX][yZero + offsetY];
+    const tile = this.map[yZero + offsetY][xZero + offsetX];
     switch (tile.type) {
       case 0:
         image(

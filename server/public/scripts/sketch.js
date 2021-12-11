@@ -18,7 +18,7 @@ function setup() {
 }
 
 function draw() {
-  background("rgba(0, 255, 0, 0.25)");
+  background("rgba(29, 29, 29, 0.25)");
   // drawMiniMap();
   state.update();
   state.draw();

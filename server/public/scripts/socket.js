@@ -1,5 +1,6 @@
+let socket;
 function connect() {
-  const socket = io("ws://localhost:6969");
+  socket = io("ws://localhost:6969");
   socket.emit("player-join", "Mike");
   socket.on("connect", () => console.log("connect"));
 
