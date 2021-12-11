@@ -2,6 +2,7 @@ const WNGen = require("./WNGen");
 const BlurFunc = require("./BlurFunc");
 const RiverGen = require("./RiverGen");
 const cleanMap = require("./cleanMap");
+const HARDCODE = require("./HARDCODE");
 
 //console.log(MapGen(1, 1));
 
@@ -29,7 +30,7 @@ function MapGen(x, y) {
   map = cleanMap(map);
   map = BlurFunc(map);
   map = RiverGen(map);
-
+  map = HARDCODE(map);
   return map;
 }
 
