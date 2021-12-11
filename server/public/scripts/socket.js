@@ -1,6 +1,6 @@
 let socket;
 function connect() {
-  socket = io("ws://d900-141-163-120-9.ngrok.io/");
+  socket = io("ws://localhost:8000");
   socket.emit("player-join", "Mike");
   socket.on("connect", () => console.log("connect"));
 
@@ -34,6 +34,9 @@ function connect() {
     switch (itemData.type){
       case "Windmill":
         state.gameObjects.push(new Windmill(itemData.x, itemData.y));
+        break;
+      case "WaveGenerator":
+        state.gameObjects.push(new WaveGenerator(itemData.x, itemData.y));
     }
   });
 }

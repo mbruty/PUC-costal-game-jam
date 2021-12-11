@@ -109,6 +109,7 @@ function mousePressed() {
           state.research -= obj.price;
         }
         state.gameObjects.push(new WaveGenerator(newX, newY));
+        objectData = {"type": "WaveGenerator", "x": newX, "y": newY};
     }
 
     // Send to server
