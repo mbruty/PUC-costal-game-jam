@@ -23,7 +23,7 @@ class UI {
 
   drawResearch() {
     push();
-    translate(sketchHeight - 300, sketchWidth - 50);
+    translate(sketchWidth - 300, sketchHeight - 50);
     stroke("#292929");
     fill(255);
     rect(0, 0, 300, 50, 40, 0, 0, 0);
@@ -35,7 +35,7 @@ class UI {
 
   drawEnergy() {
     push();
-    translate(0, sketchWidth - 50);
+    translate(0, sketchHeight - 50);
     stroke("#292929");
     fill(255);
     rect(0, 0, 250, 50, 0, 40, 0, 0);
