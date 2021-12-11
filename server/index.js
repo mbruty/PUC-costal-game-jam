@@ -1,27 +1,19 @@
 const express = require("express");
 const path = require("path");
 const app = express();
+const http = require("http").Server(app);
 
 const config = require("./config");
 const Direction = require("./Direction");
 const Player = require("./Player");
 const Map = require("./Map");
 
+const io = require("socket.io")(http);
 (async () => {
   app.use(express.static(path.join(__dirname, "./public")));
-  await new Promise((resolve) => app.listen(8000, resolve));
+  await new Promise((resolve) => http.listen(8000, resolve));
   console.log("🚀 Server blasting off at http://localhost:8000");
 })();
-
-const { Server } = require("socket.io");
-const io = new Server({
-  cors: {
-    origin: "http://localhost:5500",
-    methods: ["GET", "POST"],
-    allowedHeaders: ["my-custom-header"],
-    credentials: true,
-  },
-});
 
 // All connected players
 let players = {};
