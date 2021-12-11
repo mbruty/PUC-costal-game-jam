@@ -1,3 +1,5 @@
+const serverUpdateRate = 60;  // How many frames to wait between sending updates to server
+
 class GameState {
   constructor(energy, research) {
     this.UI = new UI(energy, research);
@@ -118,6 +120,9 @@ class GameState {
       obj.update(this);
     });
 
-    // Update server with new data
+    // Update server with new data once every 60 frames
+    if (frameCount % 60 === 0){
+      sendState(this);
+    }
   }
 }

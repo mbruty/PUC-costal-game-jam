@@ -16,7 +16,7 @@ const Map = require("./Map");
 const { Server } = require("socket.io");
 const io = new Server({
   cors: {
-    origin: "http://localhost:5500",
+    origin: "http://localhost:8000",
     methods: ["GET", "POST"],
     allowedHeaders: ["my-custom-header"],
     credentials: true,
@@ -25,6 +25,7 @@ const io = new Server({
 
 // All connected players
 let players = {};
+let highestPlayerId = 0;  // TODO: Update this from file when loading in players
 
 let map = new Map();
 map.generate();
@@ -33,14 +34,22 @@ io.on("connection", (socket) => {
   console.log("connection");
 
   socket.on("player-join", (username) => {
-    let newPlayer = new Player(username);
+    highestPlayerId += 1;
+    let newPlayer = new Player(highestPlayerId, username);
     players[socket.id] = newPlayer;
     sendState(socket);
     // Notify existing players of the new player
     socket.broadcast.emit("new-player", newPlayer);
   });
 
-  socket.on("player-move", (direction) => {});
+  socket.on("update-position", (x, y) => {
+    if (players[socket.id] !== undefined){
+      let player = players[socket.id];
+      if (player.updatePosIfLegal(x, y) === true){
+        socket.broadcast.emit("player-move", player.getId(), player.getXPos(), player.getYPos());
+      }
+    }
+  });
 
   socket.on("place", (itemId) => {});
 
