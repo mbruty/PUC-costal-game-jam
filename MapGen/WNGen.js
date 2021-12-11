@@ -1,5 +1,4 @@
-console.log(WNGen(10,10));
-
+//console.log(WNGen(10,10));
 function WNGen(x, y)
 {
     var map = [];
@@ -15,3 +14,4 @@ function WNGen(x, y)
     return map;
 }
 
+module.exports = WNGen;
