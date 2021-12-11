@@ -1,10 +1,9 @@
-function BlurFunc(map) {
+function cleanMap(map) {
   var N, S, E, W;
-  var BlurFactor = 2;
   for (i = 0; i < map.length; i++) {
     for (j = 0; j < map[i].length; j++) {
       //if water
-      if (map[i][j] == 0) {
+      if (map[i][j] == 1) {
         var sum = 0;
         //check environment
         if (j != 0) {
@@ -21,24 +20,21 @@ function BlurFunc(map) {
         }
 
         //checkBlur
-        if (N == 1) {
+        if (N == 0) {
           sum = sum + 1;
         }
-        if (S == 1) {
+        if (S == 0) {
           sum = sum + 1;
         }
-        if (E == 1) {
+        if (E == 0) {
           sum = sum + 1;
         }
-        if (W == 1) {
+        if (W == 0) {
           sum = sum + 1;
         }
         //setBlur
-        if (sum > BlurFactor) {
-          map[i][j] = 3;
-        }
         if (sum == 4) {
-          map[i][j] = 1;
+          map[i][j] = 0;
         }
       }
     }
@@ -46,4 +42,4 @@ function BlurFunc(map) {
   return map;
 }
 
-module.exports = BlurFunc;
+module.exports = cleanMap;
