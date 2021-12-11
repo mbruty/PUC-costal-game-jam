@@ -23,11 +23,11 @@ let mapObj = {
 };
 
 function setup() {
+  loadImages();
   state = new GameState(0, 49);
   state.gameObjects.push(new Windmill(501, 500)); // Always start the game with a windmill
   player = createCanvas(1088, 704);
   researchObjects[0].image = loadImage("images/windmill_1.png");
-  loadImages();
   frameRate(60);
 
   connect();
