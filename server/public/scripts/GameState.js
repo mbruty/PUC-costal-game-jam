@@ -137,6 +137,6 @@ class GameState {
   }
 
   addOtherPlayer(newPlayer){
-    this.otherPlayers[newPlayer.id] = new OtherPlayer(newPlayer.id, loadImage("images/player.png"), 500, 200);
+    this.otherPlayers[newPlayer.id] = new OtherPlayer(newPlayer.id, images.playerDown, 500, 500);
   }
 }
