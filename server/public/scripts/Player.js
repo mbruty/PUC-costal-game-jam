@@ -1,4 +1,3 @@
-
 class Player {
   constructor(image, x, y) {
     this.image = image;
@@ -65,18 +64,19 @@ class Player {
     }
   }
   draw() {
-    image(this.image, 8 * 64, 5 * 64, 64, 64);
+    if (this.isOverWater()) {
+      image(images.boat, 8 * 64, 5 * 64);
+    } else {
+      image(this.image, 8 * 64, 5 * 64, 64, 64);
+    }
     textSize(16);
     stroke(255);
     fill(255);
     text(`x: ${this.x}. y: ${this.y}`, 5, 80);
-    if (this.isOverWater()) {
-      console.log("BOAT!");
-    }
   }
 
   isOverWater() {
-    if (!state.map) return
+    if (!state.map) return;
     let tempX;
     let tempY;
     if (this.forceX < 0 || this.forceY < 0) {

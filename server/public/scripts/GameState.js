@@ -1,15 +1,16 @@
-const serverUpdateRate = 60;  // How many frames to wait between sending updates to server
+const serverUpdateRate = 60; // How many frames to wait between sending updates to server
 
 class GameState {
   constructor(energy, research) {
     this.UI = new UI(energy, research);
-    this.player = new Player(loadImage("images/player.png"), 500, 200);
+    this.player = new Player(loadImage("images/player.png"), 500, 500);
     this.gameObjects = [this.player, this.UI];
     this.energy = energy;
     this.research = research;
     this.playerAction = null;
     this.map = null;
     this.selectedItem = 0;
+    this.energyCount = 0;
   }
 
   setMap(map) {
@@ -121,8 +122,13 @@ class GameState {
     });
 
     // Update server with new data once every 60 frames
-    if (frameCount % 60 === 0){
+    if (frameCount % 60 === 0) {
       sendState(this);
+    }
+
+    while (this.energyCount >= 100) {
+      this.energyCount -= 100;
+      this.research++;
     }
   }
 }

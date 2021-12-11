@@ -28,9 +28,9 @@ class UI {
     stroke("#292929");
     fill(255);
     rect(0, 0, 300, 50, 40, 0, 0, 0);
-    textSize(32);
+    textSize(20);
     fill(0);
-    text(`🧪 Research : ${this.research}`, 20, 40);
+    text(`🧪 Research : ${state.research}`, 20, 40);
     pop();
   }
 
@@ -40,9 +40,9 @@ class UI {
     stroke("#292929");
     fill(255);
     rect(0, 0, 250, 50, 0, 40, 0, 0);
-    textSize(32);
+    textSize(20);
     fill(0);
-    text(`⚡️ Energy : ${this.power}`, 10, 40);
+    text(`⚡️ Energy : ${state.energy} / s`, 10, 40);
     pop();
   }
 

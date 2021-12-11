@@ -9,7 +9,8 @@ let mapObj = {
 };
 
 function setup() {
-  state = new GameState(100, 255);
+  state = new GameState(0, 0);
+  state.gameObjects.push(new Windmill(501, 500)); // Always start the game with a windmill
   player = createCanvas(1088, 704);
   loadImages();
   frameRate(60);
