@@ -4,6 +4,8 @@ const app = express();
 
 const config = require('./config');
 const Direction = require('./Direction');
+const Player = require('./Player');
+const Map = require('./Map');
 
 (async () => {
   app.use(express.static(path.join(__dirname, "./public")));
@@ -13,7 +15,21 @@ const Direction = require('./Direction');
 
 const io = require('socket.io')(config.socketPort);
 
+// All connected players
+let players = {};
+
+let map = new Map();  // Placeholder for now
+
 io.on("connection", socket => {
+
+  socket.on('player-join', username => {
+    let newPlayer =  new Player(username);
+    players[socket.id] = newPlayer;
+    sendState(socket);
+    // Notify existing players of the new player
+    socket.broadcast.emit('new-player', newPlayer);
+  });
+
   socket.on('player-move', direction => {
 
   });
@@ -30,3 +46,9 @@ io.on("connection", socket => {
     // Send 18 * 9 area of the map, centred on the pixel at given coords
   });
 });
+
+function sendState(socket){
+  // Send the game state (map, players, etc...) to the given socket
+  socket.emit('send-map', map.mapList);
+  socket.emit('send-players', players);
+}
