@@ -11,7 +11,7 @@ const Map = require("./Map");
 const io = require("socket.io")(http);
 (async () => {
   app.use(express.static(path.join(__dirname, "./public")));
-  await new Promise((resolve) => http.listen(8000, resolve));
+  await new Promise((resolve) => http.listen(process.env.PORT || 8000, resolve));
   console.log("🚀 Server blasting off at http://localhost:8000");
 })();
 
