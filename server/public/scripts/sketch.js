@@ -1,5 +1,5 @@
-let sketchWidth = 640;
-let sketchHeight = 1024;
+let sketchWidth = 1088; // 17 tiles wide
+let sketchHeight = 704; // 11 tiles tall
 
 let state;
 let mapObj = {
@@ -10,19 +10,16 @@ let mapObj = {
 
 function setup() {
   state = new GameState(100, 255);
-  player = createCanvas(1024, 640);
+  player = createCanvas(1088, 704);
+  loadImages();
   frameRate(60);
 
   connect();
-
-  map = MapGen(1, 1);
-
-  console.log(map);
 }
 
 function draw() {
   background("rgba(0, 255, 0, 0.25)");
-  drawMiniMap();
+  // drawMiniMap();
   state.update();
   state.draw();
 }

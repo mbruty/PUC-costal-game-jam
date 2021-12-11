@@ -4,7 +4,7 @@ const BlurFunc = require("./BlurFunc");
 console.log(MapGen(1, 1));
 
 function MapGen(x, y) {
-  const ChunkSize = 16;
+  const ChunkSize = 1000;
   var map = [];
   var Temp = WNGen(ChunkSize, ChunkSize);
 

@@ -1,11 +1,16 @@
 class GameState {
   constructor(energy, research) {
     this.UI = new UI(energy, research);
-    this.player = new Player(loadImage("images/player.png"), 100, 100);
+    this.player = new Player(loadImage("images/player.png"), 500, 100);
     this.gameObjects = [this.player, this.UI];
     this.energy = energy;
     this.research = research;
     this.playerAction = null;
+    this.map = null;
+  }
+
+  setMap(map) {
+    this.map = map;
   }
 
   setPlayerAction(key) {
@@ -32,9 +37,73 @@ class GameState {
   }
 
   draw() {
+    this.drawMap();
     this.gameObjects.forEach((obj) => {
       obj.draw();
     });
+  }
+
+  drawMap() {
+    if (!this.map) {
+      return;
+    }
+
+    console.log("Here");
+
+    for (let y = 0; y < 11; y++) {
+      push();
+      translate(0, y * 64);
+      for (let x = 0; x < 17; x++) {
+        push();
+        translate(x * 64, 0);
+        this.drawMapTile(x, y);
+        pop();
+      }
+      pop();
+    }
+  }
+
+  drawMapTile(offsetX, offsetY) {
+    let xZero;
+    let yZero;
+    if (this.player.forceX < 0 || this.player.forceY < 0) {
+      xZero = Math.floor(this.player.x - 8);
+      yZero = Math.floor(this.player.y - 5);
+    } else {
+      xZero = Math.ceil(this.player.x - 8);
+      yZero = Math.ceil(this.player.y - 5);
+    }
+
+    const tile = this.map[xZero + offsetX][yZero + offsetY];
+    switch (tile.type) {
+      case 0:
+        image(
+          images.water,
+          this.player.forceX * 64,
+          this.player.forceY * 64,
+
+          64,
+          64
+        );
+        break;
+      case 1:
+        image(
+          images.grass,
+          this.player.forceX * 64,
+          this.player.forceY * 64,
+          64,
+          64
+        );
+        break;
+      case 3:
+        image(
+          images.sand,
+          this.player.forceX * 64,
+          this.player.forceY * 64,
+          64,
+          64
+        );
+    }
   }
 
   update(playerAction) {
