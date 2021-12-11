@@ -21,10 +21,7 @@ function setup() {
 function draw() {
   background("rgba(0, 255, 0, 0.25)");
   drawMiniMap();
-  gameobjects.forEach((obj) => {
-    obj.update(gameState);
-    obj.draw();
-  });
+  state.draw();
 }
 
 function drawMiniMap() {
