@@ -21,6 +21,7 @@ function setup() {
 function draw() {
   background("rgba(0, 255, 0, 0.25)");
   drawMiniMap();
+  state.update();
   state.draw();
 }
 
@@ -47,4 +48,11 @@ function drawMiniMap() {
     pop();
   }
   pop();
+}
+function keyPressed() {
+  state.setPlayerAction(key);
+}
+
+function keyReleased() {
+  state.setPlayerAction(null);
 }
