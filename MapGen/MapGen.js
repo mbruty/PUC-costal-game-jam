@@ -22,3 +22,5 @@ function MapGen(x, y) {
   map = BlurFunc(map);
   return map;
 }
+
+module.exports = MapGen;
