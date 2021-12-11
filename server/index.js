@@ -48,7 +48,9 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.on("place", (itemId) => {});
+  socket.on("place", (itemId) => {
+    
+  });
 
   socket.on("break", (coords) => {});
 

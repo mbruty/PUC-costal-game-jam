@@ -4,6 +4,7 @@ class GameState {
   constructor(energy, research) {
     this.UI = new UI(energy, research);
     this.player = new Player(images.playerDown, 500, 500);
+    this.otherPlayers = {};
     this.gameObjects = [this.player, this.UI];
     this.energy = energy;
     this.research = research;
@@ -51,6 +52,9 @@ class GameState {
     this.gameObjects.forEach((obj) => {
       obj.draw();
     });
+    for (let p in this.otherPlayers){
+      this.otherPlayers[p].draw();
+    }
   }
 
   drawMap() {
@@ -130,5 +134,9 @@ class GameState {
       this.energyCount -= 100;
       this.research++;
     }
+  }
+
+  addOtherPlayer(newPlayer){
+    this.otherPlayers[newPlayer.id] = new OtherPlayer(newPlayer.id, images.playerDown, 500, 500);
   }
 }
