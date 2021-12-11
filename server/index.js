@@ -48,8 +48,8 @@ io.on("connection", (socket) => {
     }
   });
 
-  socket.on("place", (itemId) => {
-    
+  socket.on("place", (itemData) => {
+    socket.broadcast.emit("item-placed", itemData);
   });
 
   socket.on("break", (coords) => {});

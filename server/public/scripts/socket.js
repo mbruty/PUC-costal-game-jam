@@ -29,9 +29,24 @@ function connect() {
   socket.on("new-player", (newPlayer) => {
     state.addOtherPlayer(newPlayer);
   });
+
+  socket.on("item-placed", (itemData) => {
+    switch (itemData.type){
+      case "Windmill":
+        state.gameObjects.push(new Windmill(itemData.x, itemData.y));
+    }
+  });
 }
 
 function sendState(gameState) {
   // Send local state to server
   socket.emit("update-position", gameState.player.x, gameState.player.y);
+}
+
+function sendPlacedItem(itemData){
+  socket.emit('place', itemData);
+}
+
+function updateResearch(newAmount){
+  socket.emit('update-research', newAmount);
 }

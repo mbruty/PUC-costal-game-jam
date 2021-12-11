@@ -80,11 +80,12 @@ function mousePressed() {
       return;
     }
 
+    let objectData = {};
     // All good now
     switch (state.selectedItem) {
       case 0:
         state.gameObjects.push(new Windmill(newX, newY));
-
+        objectData = {"type": "Windmill", "x": newX, "y": newY};
         state.research -= obj.price;
         break;
 
@@ -109,5 +110,8 @@ function mousePressed() {
         }
         state.gameObjects.push(new WaveGenerator(newX, newY));
     }
+
+    // Send to server
+    sendPlacedItem(objectData);
   }
 }
