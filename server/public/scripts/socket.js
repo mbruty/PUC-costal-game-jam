@@ -1,6 +1,6 @@
 let socket;
 function connect() {
-  socket = io("ws://d900-141-163-120-9.ngrok.io/");
+  socket = io("ws://costal-factorio.herokuapp.com/");
   socket.emit("player-join", "Mike");
   socket.on("connect", () => console.log("connect"));
 
@@ -29,9 +29,35 @@ function connect() {
   socket.on("new-player", (newPlayer) => {
     state.addOtherPlayer(newPlayer);
   });
+
+  socket.on("item-placed", (itemData) => {
+    switch (itemData.type) {
+      case "Windmill":
+        state.gameObjects.push(new Windmill(itemData.x, itemData.y));
+        break;
+      case "WaveGenerator":
+        state.gameObjects.push(new WaveGenerator(itemData.x, itemData.y));
+    }
+  });
 }
 
 function sendState(gameState) {
   // Send local state to server
   socket.emit("update-position", gameState.player.x, gameState.player.y);
+}
+
+function sendPlacedItem(itemData) {
+  socket.emit("place", itemData);
+}
+
+function updateResearch(newAmount) {
+  socket.emit("update-research", newAmount);
+}
+
+function sendPlacedItem(itemData) {
+  socket.emit("place", itemData);
+}
+
+function updateResearch(newAmount) {
+  socket.emit("update-research", newAmount);
 }
