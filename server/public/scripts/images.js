@@ -9,5 +9,6 @@ function loadImages() {
   images.playerLeft = loadImage("images/player_left.png")
   images.playerRight = loadImage("images/player_right.png")
   images.playerDown = loadImage("images/player_front.png")
+  images.shipwreck = loadImage("images/shipwreck.png");
   Object.freeze(images);
 }

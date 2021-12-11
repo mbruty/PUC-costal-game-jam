@@ -5,6 +5,7 @@ class Player {
     this.y = y;
     this.forceX = 0;
     this.forceY = 0;
+    this.hasBeenInwater = false;
   }
 
   update(gameState) {
@@ -70,8 +71,13 @@ class Player {
   draw() {
     if (this.isOverWater()) {
       image(images.boat, 8 * 64, 5 * 64);
+      this.hasBeenInwater = true;
     } else {
       image(this.image, 8 * 64, 5 * 64, 64, 64);
+    }
+    if (!this.isOverWater() && this.hasBeenInwater) {
+      this.hasBeenInwater = false;
+      state.gameObjects.push(new ShipWreck(Math.floor(this.x), Math.floor(this.y)));
     }
     textSize(16);
     stroke(255);
