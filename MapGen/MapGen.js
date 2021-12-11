@@ -1,6 +1,6 @@
 const WNGen = require("./WNGen");
 
-console.log(MapGen(10,10))
+//console.log(MapGen(10,10))
 
 function MapGen(x, y)
 {
