@@ -13,6 +13,8 @@ function setup() {
   player = createCanvas(1024, 640);
   frameRate(60);
 
+  connect();
+
   map = MapGen(1, 1);
 
   console.log(map);

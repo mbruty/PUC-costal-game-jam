@@ -1,7 +1,7 @@
 class GameState {
   constructor(energy, research) {
     this.UI = new UI(energy, research);
-    this.player = new Player(loadImage("images/player.png"));
+    this.player = new Player(loadImage("images/player.png"), 100, 100);
     this.gameObjects = [this.player, this.UI];
     this.energy = energy;
     this.research = research;
