@@ -50,3 +50,11 @@ function sendPlacedItem(itemData){
 function updateResearch(newAmount){
   socket.emit('update-research', newAmount);
 }
+
+function sendPlacedItem(itemData){
+  socket.emit('place', itemData);
+}
+
+function updateResearch(newAmount){
+  socket.emit('update-research', newAmount);
+}
