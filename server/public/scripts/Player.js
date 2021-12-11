@@ -1,3 +1,4 @@
+
 class Player {
   constructor(image, x, y) {
     this.image = image;
@@ -69,5 +70,24 @@ class Player {
     stroke(255);
     fill(255);
     text(`x: ${this.x}. y: ${this.y}`, 5, 80);
+    if (this.isOverWater()) {
+      console.log("BOAT!");
+    }
+  }
+
+  isOverWater() {
+    if (!state.map) return
+    let tempX;
+    let tempY;
+    if (this.forceX < 0 || this.forceY < 0) {
+      tempX = Math.floor(this.x);
+      tempY = Math.floor(this.y);
+    } else {
+      tempX = Math.ceil(this.x);
+      tempY = Math.ceil(this.y);
+    }
+
+    const tile = state.map[tempY][tempX];
+    return tile.type == 0;
   }
 }

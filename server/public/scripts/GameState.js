@@ -48,8 +48,6 @@ class GameState {
       return;
     }
 
-    console.log("Here");
-
     for (let y = 0; y < 11; y++) {
       push();
       translate(0, y * 64);
