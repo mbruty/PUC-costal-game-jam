@@ -3,7 +3,7 @@ const serverUpdateRate = 60; // How many frames to wait between sending updates 
 class GameState {
   constructor(energy, research) {
     this.UI = new UI(energy, research);
-    this.player = new Player(loadImage("images/player.png"), 500, 500);
+    this.player = new Player(images.playerDown, 500, 500);
     this.gameObjects = [this.player, this.UI];
     this.energy = energy;
     this.research = research;
