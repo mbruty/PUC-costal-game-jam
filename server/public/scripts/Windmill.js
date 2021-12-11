@@ -1,6 +1,6 @@
 class Windmill extends EnergyGenerator {
   constructor(x, y) {
-    super(x, y, 100, null);
+    super(x, y, 20, null);
     this.images = [];
     this.images.push(loadImage("images/windmill_1.png"));
     this.images.push(loadImage("images/windmill_2.png"));
